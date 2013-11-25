@@ -1,0 +1,17 @@
+<html>
+<head>
+	<script src="../CsvParser.js"></script>
+	<script>
+	var file = 'a;s;"d\nf";g\nh;i;j;"k, l\\"; m n"'; console.info("FileData:", file);
+	var lines = file.split(/[\r\n]+/); console.info("split to lines", lines);
+
+	var parser = new CsvParser(";");
+	parser.parseLines(lines);
+	
+	console.info("parsed", parser.data);
+	</script>
+</head>
+<body>
+siehe konsole
+</body>
+</html>
