@@ -6,18 +6,24 @@
  */
  
 CsvParser = function (delimiter, enclose, escape) 
-{
-	this.data = [];
-	
+{	
 	this.delimiter = delimiter || ',';
 	this.enclose = enclose || '"';
 	this.escape = escape || '\\';
+
+	this.reset();
 };
 
 CsvParser.prototype = {
 	constructor : CsvParser ,
+
+	reset : function () 
+	{ 
+		this.data = [];
+	} ,
 	
-	lineSplitRE : /\r?\n/ ,  
+	lineSplitRE : /\r?\n/ , 
+	
 	parse : function (string)
 	{
 		var lines = string.split(this.lineSplitRE);
@@ -26,6 +32,8 @@ CsvParser.prototype = {
 	
 	parseLines : function (lines)
 	{
+		this.reset();
+	
 		var escape = this.escape, escapeRE = new RegExp(escape+"[^"+escape+"]","g")
 		  , delimiter = this.delimiter 
 		  , enclose = this.enclose
@@ -73,6 +81,12 @@ CsvParser.prototype = {
 				this.data.push(lineData);
 				lineData = [];
 			}
-		}		
+		}
+		
+		if ( openField )
+		{
+			lineData.push(openField);
+			this.data.push(lineData);
+		}
 	}
 };
