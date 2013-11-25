@@ -16,11 +16,14 @@ CsvParser = function (delimiter, enclose, escape)
 
 CsvParser.prototype = {
 	constructor : CsvParser ,
+	
+	lineSplitRE : /\r?\n/ ,  
 	parse : function (string)
 	{
-	  // split on \r oder \n ... 
-	  // dann parse einfahc die lines ... 
+		var lines = string.split(this.lineSplitRE);
+		this.parseLines(lines);
 	} ,
+	
 	parseLines : function (lines)
 	{
 		var escape = this.escape, escapeRE = new RegExp(escape+"[^"+escape+"]","g")
