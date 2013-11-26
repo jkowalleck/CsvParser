@@ -143,7 +143,7 @@ CsvParser.prototype = {
 		for ( var l=0, ll=lines.length , line,split; l<ll ; ++l )
 		{
 			line = lines[l];
-			if ( openField )
+			if ( openField !== false )
 			{
 				if ( l > 0 )
 				{
@@ -156,7 +156,7 @@ CsvParser.prototype = {
 			{
 				lineField = split[s];
 				
-				if ( openField )
+				if ( openField !== false )
 				{
 					if ( s > 0 )
 					{
@@ -169,9 +169,9 @@ CsvParser.prototype = {
 					openField = lineField = this.trimOpenFiled(lineField, true, false);
 				}				
 				
-				if ( openField )
+				if ( openField !== false )
 				{ 
-					if ( ! this.endsOpenField(openField) )
+					if ( !this.endsOpenField(openField) )
 					{
 						continue;
 					}
@@ -188,7 +188,7 @@ CsvParser.prototype = {
 		
 		this.data = data;
 		
-		if ( openField )
+		if ( openField !== false )
 		{
 			var trailingOpenLine = data.pop();
 			trailingOpenLine.push(this.clearEscape(openField));
