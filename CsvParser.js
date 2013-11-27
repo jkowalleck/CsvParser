@@ -22,6 +22,10 @@ CsvParser.prototype = {
 	} ,
 
 	setCsvProperties : function (delimiter, enclose, escape) {
+		delimiter = delimiter || ',';
+		enclose   = enclose   || '"';
+		escape    = escape    || '\\'
+	
 		if ( !this._isString(delimiter) ) { throw new Error("Delimiter needs to be a string"); }
 		if ( !this._isString(enclose)   ) { throw new Error("Enclose needs to be a string"); }
 		if ( !this._isString(escape)    ) { throw new Error("Escape needs to be a string"); }
@@ -29,9 +33,9 @@ CsvParser.prototype = {
 		var slice = String.prototype.slice;
 		var sliceSpan = [0, 1];
 
-		this.delimiter = slice.apply(delimiter, sliceSpan) || ',';
-		this.enclose   = slice.apply(enclose, sliceSpan)   || '"';
-		this.escape    = slice.apply(escape, sliceSpan)    || '\\';
+		this.delimiter = slice.apply(delimiter, sliceSpan) ;
+		this.enclose   = slice.apply(enclose, sliceSpan);
+		this.escape    = slice.apply(escape, sliceSpan);
 	} ,
 
 	startsOpenField : function (string) {
