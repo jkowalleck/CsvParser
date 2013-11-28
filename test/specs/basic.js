@@ -21,7 +21,7 @@ describe("Basic Test:", function()
 		// @TODO 
 	});
 	
-	it("_isString", function()
+	/*it("_isString", function()
 	{	
 		var parser = new CsvParser();
 
@@ -35,7 +35,7 @@ describe("Basic Test:", function()
 		expect(parser._isString([1,2,3])).toBe(false);
 		expect(parser._isString([])).toBe(false);
 		expect(parser._isString({a:1})).toBe(false);
-	});
+	}); */
 		
 	// @TODO
 });

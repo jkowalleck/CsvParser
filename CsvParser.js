@@ -17,18 +17,16 @@ CsvParser.prototype = {
 		this.data = [];
 	} ,
 
-	_isString : function (something) {
-		return ( typeof something == "string" );
-	} ,
-
 	setCsvProperties : function (delimiter, enclose, escape) {
 		delimiter = delimiter || ',';
 		enclose   = enclose   || '"';
 		escape    = escape    || '\\'
+		
+		var isString = function (something) { return ( typeof something == "string" ); };
 	
-		if ( !this._isString(delimiter) ) { throw new Error("Delimiter needs to be a string"); }
-		if ( !this._isString(enclose)   ) { throw new Error("Enclose needs to be a string"); }
-		if ( !this._isString(escape)    ) { throw new Error("Escape needs to be a string"); }
+		if ( !isString(delimiter) ) { throw new Error("Delimiter needs to be a string"); }
+		if ( !isString(enclose)   ) { throw new Error("Enclose needs to be a string"); }
+		if ( !isString(escape)    ) { throw new Error("Escape needs to be a string"); }
 
 		var slice = String.prototype.slice;
 		var sliceSpan = [0, 1];
